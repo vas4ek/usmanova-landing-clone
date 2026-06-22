@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Фитнес с Катей Усмановой — повтор 3 экранов</title>
+<style>
+  :root{
+    --pink:#F66297;
+    --pink-d:#e24f85;
+    --ink:#1c1c22;
+    --muted:#6d6d78;
+    --bg:#f6f4f3;
+    --card:#ffffff;
+    --line:#ececf0;
+    --radius:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Gilroy","Segoe UI",Roboto,system-ui,sans-serif;
+    color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.45;
+  }
+  img{max-width:100%;display:block}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--pink);color:#fff;border:none;cursor:pointer;
+    font-weight:700;font-size:15px;letter-spacing:.3px;text-transform:uppercase;
+    padding:16px 32px;border-radius:100px;text-decoration:none;
+    transition:transform .12s ease, background .2s ease, box-shadow .2s ease;
+    box-shadow:0 10px 24px rgba(246,98,151,.32);
+  }
+  .btn:hover{background:var(--pink-d);transform:translateY(-2px)}
+  .btn:active{transform:translateY(0)}
+  .btn--ghost{background:#fff;color:var(--pink);box-shadow:0 6px 18px rgba(0,0,0,.06);border:1.5px solid #ffd3e2}
+  .btn--ghost:hover{background:#fff5f9}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-bottom:14px}
+  h2.section-title{font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+
+  /* ============ TOP BAR ============ */
+  .topbar{position:sticky;top:0;z-index:40;background:rgba(246,244,243,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{font-weight:800;font-size:18px;letter-spacing:.5px}
+  .logo span{color:var(--pink)}
+  .topbar .btn{padding:11px 22px;font-size:12px}
+  .demo-flag{font-size:11px;color:var(--muted);border:1px dashed #c9c9d2;border-radius:100px;padding:4px 12px}
+  @media(max-width:680px){.demo-flag{display:none}}
+
+  /* ============ 1. HERO ============ */
+  .hero{position:relative;overflow:hidden;padding:54px 0 64px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
+  .hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.04;font-weight:800;letter-spacing:-1px;text-transform:uppercase}
+  .hero h1 b{color:var(--pink)}
+  .hero .lead{margin:22px 0 10px;color:var(--muted);font-size:18px;max-width:520px}
+  .pills{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 28px}
+  .pill{background:#fff;border:1px solid var(--line);border-radius:100px;padding:9px 16px;font-size:13px;font-weight:600;color:#3c3c46;box-shadow:0 4px 12px rgba(0,0,0,.03)}
+  .pill b{color:var(--pink)}
+  .hero-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .hero-note{font-size:13px;color:var(--muted);max-width:200px}
+  .hero-photo{
+    position:relative;border-radius:28px;min-height:430px;
+    background:
+      radial-gradient(120% 90% at 70% 10%, #ffe1ec 0%, rgba(255,185,211,0) 55%),
+      linear-gradient(160deg,#ffd0e2 0%,#f8a9c8 60%,#f178a6 100%);
+    display:flex;align-items:flex-end;justify-content:center;overflow:hidden;
+    box-shadow:0 30px 60px rgba(246,98,151,.25);
+  }
+  .hero-photo .sil{font-size:230px;line-height:1;filter:drop-shadow(0 12px 20px rgba(0,0,0,.15));transform:translateY(8px)}
+  .hero-badge{position:absolute;top:22px;left:22px;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 12px 28px rgba(0,0,0,.12)}
+  .hero-badge .n{font-size:22px;font-weight:800;color:var(--pink)}
+  .hero-badge .t{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:22px}
+    .hero-photo{min-height:340px;order:-1}
+    .hero-photo .sil{font-size:170px}
+  }
+
+  /* ============ 2. PROGRAMS ============ */
+  .programs{padding:60px 0 24px}
+  .cat-head{display:flex;align-items:baseline;gap:14px;margin:34px 0 18px}
+  .cat-head h3{font-size:22px;font-weight:800}
+  .cat-head .line{flex:1;height:1px;background:var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{
+    background:var(--card);border-radius:var(--radius);padding:22px;border:1px solid var(--line);
+    display:flex;flex-direction:column;gap:12px;transition:transform .15s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.07)}
+  .card .thumb{height:120px;border-radius:14px;background:linear-gradient(140deg,#ffe2ee,#ffc2db);display:flex;align-items:center;justify-content:center;font-size:54px}
+  .tag{align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--pink);padding:5px 11px;border-radius:100px}
+  .tag--soft{background:#fff0f6;color:var(--pink)}
+  .card h4{font-size:18px;font-weight:800;margin-top:2px}
+  .card p{font-size:13.5px;color:var(--muted);flex:1}
+  .card .more{align-self:flex-start;margin-top:4px;background:#fff;border:1.5px solid #ffd3e2;color:var(--pink);font-weight:700;font-size:13px;padding:10px 20px;border-radius:100px;cursor:pointer;transition:background .2s}
+  .card .more:hover{background:#fff5f9}
+  @media(max-width:860px){.grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+
+  /* ============ 3. FORM ============ */
+  .lead-block{padding:64px 0}
+  .lead-card{
+    background:linear-gradient(150deg,#fff 0%,#fff 60%,#fff5f9 100%);
+    border:1px solid var(--line);border-radius:32px;padding:clamp(26px,4vw,52px);
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+    box-shadow:0 30px 70px rgba(0,0,0,.06);
+  }
+  .lead-card h2{font-size:clamp(24px,3.4vw,36px);font-weight:800;text-transform:uppercase;letter-spacing:-.5px}
+  .lead-card .sub{color:var(--muted);margin-top:14px;font-size:16px}
+  .lead-list{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+  .lead-list li{list-style:none;display:flex;gap:10px;font-size:14px;align-items:flex-start}
+  .lead-list .ic{color:var(--pink);font-weight:800}
+  form{display:flex;flex-direction:column;gap:14px}
+  .field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+  .field input,.field select{
+    width:100%;padding:15px 16px;border:1.5px solid var(--line);border-radius:14px;font-size:15px;
+    font-family:inherit;background:#fff;transition:border .2s, box-shadow .2s;
+  }
+  .field input:focus,.field select:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 4px rgba(246,98,151,.12)}
+  .field input.bad{border-color:#e5484d;box-shadow:0 0 0 4px rgba(229,72,77,.1)}
+  .err{color:#e5484d;font-size:12px;margin-top:5px;display:none}
+  .field.invalid .err{display:block}
+  form .btn{margin-top:6px;width:100%;font-size:15px}
+  .consent{font-size:12px;color:var(--muted);text-align:center}
+  .form-ok{display:none;text-align:center;padding:30px 10px}
+  .form-ok .check{width:64px;height:64px;border-radius:50%;background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 16px;box-shadow:0 12px 28px rgba(246,98,151,.4)}
+  .form-ok h3{font-size:22px;font-weight:800;margin-bottom:8px}
+  .form-ok p{color:var(--muted);font-size:14px}
+  .form-ok.show{display:block}
+  form.hide{display:none}
+  @media(max-width:780px){.lead-card{grid-template-columns:1fr;gap:26px}}
+
+  /* ============ FAQ ============ */
+  .faq{padding:10px 0 70px}
+  .faq h2{text-align:center;margin-bottom:26px}
+  .acc{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  .acc-item{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .acc-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:18px 20px;font-size:15.5px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:inherit;color:var(--ink)}
+  .acc-q .ico{flex:none;width:26px;height:26px;border-radius:50%;background:#fff0f6;color:var(--pink);display:flex;align-items:center;justify-content:center;font-size:20px;transition:transform .25s}
+  .acc-item.open .acc-q .ico{transform:rotate(45deg)}
+  .acc-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--muted);font-size:14px}
+  .acc-a div{padding:0 20px 18px}
+  .acc-item.open .acc-a{max-height:320px}
+
+  /* ============ FOOTER ============ */
+  footer{background:#fff;border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .toast{visibility:hidden;position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:#1c1c22;color:#fff;padding:14px 22px;border-radius:100px;font-size:14px;box-shadow:0 14px 30px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.2,.8,.2,1);z-index:60;max-width:90vw;text-align:center}
+  .toast.show{visibility:visible;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="logo">USMANOVA<span>FIT</span></div>
+    <span class="demo-flag">учебный повтор 3 экранов · не оригинал</span>
+    <a href="#form" class="btn">Выбрать программу</a>
+  </div>
+</div>
+
+<!-- ===== SCREEN 1: HERO ===== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Приведите тело в форму с чемпионкой <b>Катей Усмановой</b></h1>
+      <p class="lead">Похудеть, подтянуть попу и живот, набрать форму в зале, восстановиться после родов — тренировки и питание под вашу цель.</p>
+      <div class="pills">
+        <span class="pill">без диет, голода и запретов</span>
+        <span class="pill">с пользой для здоровья</span>
+        <span class="pill"><b>580 000+</b> учениц</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#form" class="btn">Выбрать программу</a>
+        <span class="hero-note">Подберём программу под вашу цель и уровень</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-badge"><div class="n">15+ лет</div><div class="t">опыта тренера</div></div>
+      <div class="sil">🏋️‍♀️</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCREEN 2: PROGRAMS ===== -->
+<section class="programs">
+  <div class="wrap">
+    <span class="eyebrow">Витрина программ</span>
+    <h2 class="section-title">Тренировки под любую цель</h2>
+
+    <div class="cat-head"><h3>Тренировки дома</h3><span class="line"></span></div>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb">💪</div>
+        <span class="tag">Флагман</span>
+        <h4>Метод Усмановой</h4>
+        <p>Освоите технику и втянетесь в регулярные тренировки — без травм и через силу. Первая программа, с которой начинают все ученицы Кати.</p>
+        <button class="more" data-prog="Метод Усмановой">Подробнее</button>
+      </article>
+      <article class="card">
+        <div class="thumb">🔥</div>
+        <span class="tag tag--soft">Марафон</span>
+        <h4>Марафон стройности</h4>
+        <p>Первый видимый результат за 21 день — уходит первый жир, появляется тонус и лёгкость. Для тех, кто стартует с нуля.</p>
+        <button class="more" data-prog="Марафон стройности">Подробнее</button>
+      </article>
+      <article class="card">
+        <div class="thumb">🍑</div>
+        <span class="tag tag--soft">Марафон</span>
+        <h4>Упругая попа 1.0</h4>
+        <p>Первый объём и подтянутость ягодиц — с собственным весом. Для тех, кто впервые целенаправленно работает над попой.</p>
+        <button class="more" data-prog="Упругая попа 1.0">Подробнее</button>
+      </article>
+      <article class="card">
+        <div class="thumb">⚡</div>
+        <span class="tag tag--soft">Марафон</span>
+        <h4>Плоский живот</h4>
+        <p>Убрать вываливающийся живот на глубокие мышцы пресса, которые отвечают за плоский живот — а не за «кубики».</p>
+        <button class="more" data-prog="Плоский живот">Подробнее</button>
+      </article>
+      <article class="card">
+        <div class="thumb">🏃‍♀️</div>
+        <span class="tag tag--soft">Курс</span>
+        <h4>Жиросжигающий</h4>
+        <p>Сжечь жир и проявить рельеф за 6 недель. Для тех, кто уже тренировался: с гантелями, по схеме интервальных нагрузок.</p>
+        <button class="more" data-prog="Жиросжигающий курс">Подробнее</button>
+      </article>
+      <article class="card">
+        <div class="thumb">🤖</div>
+        <span class="tag">Бестселлер</span>
+        <h4>ИИ-нутрициолог</h4>
+        <p>Едите без срывов и понимаете своё тело — питание, тренировки, анализы в кармане. Подскажет, поддержит, не осудит.</p>
+        <button class="more" data-prog="ИИ-нутрициолог">Подробнее</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCREEN 3: LEAD FORM ===== -->
+<section class="lead-block" id="form">
+  <div class="wrap">
+    <div class="lead-card">
+      <div>
+        <h2>Не знаете, с чего начать?</h2>
+        <p class="sub">Напишите нам — подберём программу под вашу цель и уровень. Это бесплатно и быстро.</p>
+        <ul class="lead-list">
+          <li><span class="ic">✓</span> Первые видимые результаты уже на 6-й день тренировок</li>
+          <li><span class="ic">✓</span> В среднем ученицы теряют 4–6 кг за первый месяц</li>
+          <li><span class="ic">✓</span> Программы для старта с нуля — техника по шагам</li>
+        </ul>
+      </div>
+
+      <div>
+        <form id="leadForm" novalidate>
+          <div class="field" id="f-name">
+            <label for="name">Как вас зовут?</label>
+            <input type="text" id="name" name="name" placeholder="Ваше имя" autocomplete="name">
+            <div class="err">Введите имя (минимум 2 буквы)</div>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="phone">Телефон или Telegram</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 999 123-45-67" autocomplete="tel" inputmode="tel">
+            <div class="err">Укажите телефон (от 7 цифр) или @username</div>
+          </div>
+          <div class="field" id="f-goal">
+            <label for="goal">Ваша цель</label>
+            <select id="goal" name="goal">
+              <option value="">Выберите цель…</option>
+              <option>Похудеть</option>
+              <option>Подтянуть ягодицы и живот</option>
+              <option>Тренировки в зале</option>
+              <option>Восстановиться после родов</option>
+              <option>Питание без срывов</option>
+            </select>
+            <div class="err">Выберите цель</div>
+          </div>
+          <button type="submit" class="btn">Подобрать программу</button>
+          <p class="consent">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+        </form>
+
+        <div class="form-ok" id="formOk">
+          <div class="check">✓</div>
+          <h3>Заявка отправлена!</h3>
+          <p id="okText">Спасибо! Мы свяжемся с вами и подберём программу под вашу цель.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ (bonus interactive) -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="section-title">Отвечаем на вопросы</h2>
+    <div class="acc">
+      <div class="acc-item">
+        <button class="acc-q">Подойдёт ли мне программа, если я никогда не тренировалась?<span class="ico">+</span></button>
+        <div class="acc-a"><div>Да. На витрине есть программы для старта с нуля — например, Метод Усмановой и Марафон стройности. Катя показывает и объясняет каждое движение, вы просто повторяете.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q">Сколько времени в день нужно на тренировки?<span class="ico">+</span></button>
+        <div class="acc-a"><div>От 20 до 45 минут. Заниматься можно в любое удобное время — расписания нет, уроки открыты, включаете когда вам удобно днём или вечером.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q">Можно ли тренироваться дома? Нужно ли оборудование?<span class="ico">+</span></button>
+        <div class="acc-a"><div>Да, все программы рассчитаны на занятия дома. Для большинства достаточно коврика и собственного веса. Для некоторых пригодится резинка или лёгкие гантели — их можно заменить бутылками с водой.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© USMANOVAFIT — учебный повтор 3 экранов лендинга</div>
+    <div>Сверстал: Vasilii Chekalin · HTML/CSS/JS</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ---- Toast helper ----
+  const toast = document.getElementById('toast');
+  function showToast(msg){
+    toast.textContent = msg; toast.classList.add('show');
+    clearTimeout(toast._t); toast._t = setTimeout(()=>toast.classList.remove('show'), 2600);
+  }
+
+  // ---- Program "Подробнее" buttons -> prefill form goal + scroll ----
+  document.querySelectorAll('.more').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const prog = b.dataset.prog;
+      showToast('Программа «'+prog+'» — оставьте заявку, подберём доступ');
+      document.getElementById('form').scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // ---- FAQ accordion ----
+  document.querySelectorAll('.acc-q').forEach(q=>{
+    q.addEventListener('click', ()=>{
+      const item = q.closest('.acc-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // ---- Form validation + submit ----
+  const form = document.getElementById('leadForm');
+  const okBox = document.getElementById('formOk');
+
+  function setInvalid(id, bad){
+    const f = document.getElementById(id);
+    f.classList.toggle('invalid', bad);
+    const input = f.querySelector('input,select');
+    if(input) input.classList.toggle('bad', bad);
+  }
+
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
+    const goal = form.goal.value;
+
+    const nameBad = name.length < 2;
+    // valid if 7+ digits OR a telegram @handle
+    const digits = (phone.match(/\d/g)||[]).length;
+    const isHandle = /^@?[a-zA-Z0-9_]{4,}$/.test(phone);
+    const phoneBad = !(digits >= 7 || isHandle);
+    const goalBad = goal === '';
+
+    setInvalid('f-name', nameBad);
+    setInvalid('f-phone', phoneBad);
+    setInvalid('f-goal', goalBad);
+
+    if(nameBad || phoneBad || goalBad){
+      showToast('Проверьте поля формы');
+      const firstBad = document.querySelector('.field.invalid input, .field.invalid select');
+      if(firstBad) firstBad.focus();
+      return;
+    }
+
+    // success state
+    document.getElementById('okText').textContent =
+      'Спасибо, '+name+'! Подберём программу под цель «'+goal+'» и свяжемся с вами.';
+    form.classList.add('hide');
+    okBox.classList.add('show');
+    showToast('Заявка принята ✓');
+  });
+
+  // clear error on input
+  ['name','phone','goal'].forEach(id=>{
+    const el = document.getElementById(id);
+    el.addEventListener('input', ()=>setInvalid('f-'+id, false));
+    el.addEventListener('change', ()=>setInvalid('f-'+id, false));
+  });
+</script>
+</body>
+</html>
