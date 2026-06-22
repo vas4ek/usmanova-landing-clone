@@ -67,14 +67,14 @@
     display:flex;align-items:flex-end;justify-content:center;overflow:hidden;
     box-shadow:0 30px 60px rgba(246,98,151,.25);
   }
-  .hero-photo .sil{font-size:230px;line-height:1;filter:drop-shadow(0 12px 20px rgba(0,0,0,.15));transform:translateY(8px)}
+  .hero-photo .hero-img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:104%;width:auto;max-width:none;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(0,0,0,.18))}
   .hero-badge{position:absolute;top:22px;left:22px;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 12px 28px rgba(0,0,0,.12)}
   .hero-badge .n{font-size:22px;font-weight:800;color:var(--pink)}
   .hero-badge .t{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
   @media(max-width:860px){
     .hero-grid{grid-template-columns:1fr;gap:22px}
     .hero-photo{min-height:340px;order:-1}
-    .hero-photo .sil{font-size:170px}
+    .hero-photo .hero-img{height:100%}
   }
 
   /* ============ 2. PROGRAMS ============ */
@@ -88,7 +88,9 @@
     display:flex;flex-direction:column;gap:12px;transition:transform .15s ease, box-shadow .2s ease;
   }
   .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.07)}
-  .card .thumb{height:120px;border-radius:14px;background:linear-gradient(140deg,#ffe2ee,#ffc2db);display:flex;align-items:center;justify-content:center;font-size:54px}
+  .card .thumb{height:170px;border-radius:14px;background:linear-gradient(140deg,#ffe2ee,#ffc2db);overflow:hidden}
+  .card .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+  .card:hover .thumb img{transform:scale(1.05)}
   .tag{align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--pink);padding:5px 11px;border-radius:100px}
   .tag--soft{background:#fff0f6;color:var(--pink)}
   .card h4{font-size:18px;font-weight:800;margin-top:2px}
@@ -179,7 +181,7 @@
     </div>
     <div class="hero-photo">
       <div class="hero-badge"><div class="n">15+ лет</div><div class="t">опыта тренера</div></div>
-      <div class="sil">🏋️‍♀️</div>
+      <img class="hero-img" src="assets/hero.png" alt="Катя Усманова" loading="eager">
     </div>
   </div>
 </section>
@@ -193,46 +195,46 @@
     <div class="cat-head"><h3>Тренировки дома</h3><span class="line"></span></div>
     <div class="grid">
       <article class="card">
-        <div class="thumb">💪</div>
+        <div class="thumb"><img src="assets/card1.png" alt="Метод Усмановой"></div>
         <span class="tag">Флагман</span>
         <h4>Метод Усмановой</h4>
         <p>Освоите технику и втянетесь в регулярные тренировки — без травм и через силу. Первая программа, с которой начинают все ученицы Кати.</p>
         <button class="more" data-prog="Метод Усмановой">Подробнее</button>
       </article>
       <article class="card">
-        <div class="thumb">🔥</div>
+        <div class="thumb"><img src="assets/card2.png" alt="Марафон стройности"></div>
         <span class="tag tag--soft">Марафон</span>
         <h4>Марафон стройности</h4>
         <p>Первый видимый результат за 21 день — уходит первый жир, появляется тонус и лёгкость. Для тех, кто стартует с нуля.</p>
         <button class="more" data-prog="Марафон стройности">Подробнее</button>
       </article>
       <article class="card">
-        <div class="thumb">🍑</div>
+        <div class="thumb"><img src="assets/card3.png" alt="Упругая попа 1.0"></div>
         <span class="tag tag--soft">Марафон</span>
         <h4>Упругая попа 1.0</h4>
         <p>Первый объём и подтянутость ягодиц — с собственным весом. Для тех, кто впервые целенаправленно работает над попой.</p>
         <button class="more" data-prog="Упругая попа 1.0">Подробнее</button>
       </article>
       <article class="card">
-        <div class="thumb">⚡</div>
+        <div class="thumb"><img src="assets/card4.png" alt="Упругая попа 2.0"></div>
+        <span class="tag tag--soft">Марафон</span>
+        <h4>Упругая попа 2.0</h4>
+        <p>Плотные, упругие ягодицы — следующий уровень после 1.0. С резинкой и утяжелителями, для подготовленных.</p>
+        <button class="more" data-prog="Упругая попа 2.0">Подробнее</button>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="assets/card5.png" alt="Плоский живот"></div>
         <span class="tag tag--soft">Марафон</span>
         <h4>Плоский живот</h4>
-        <p>Убрать вываливающийся живот на глубокие мышцы пресса, которые отвечают за плоский живот — а не за «кубики».</p>
+        <p>Убрать вываливающийся живот — тренировки на глубокие мышцы пресса, которые отвечают за плоский живот, а не за «кубики».</p>
         <button class="more" data-prog="Плоский живот">Подробнее</button>
       </article>
       <article class="card">
-        <div class="thumb">🏃‍♀️</div>
+        <div class="thumb"><img src="assets/card6.png" alt="Жиросжигающий курс"></div>
         <span class="tag tag--soft">Курс</span>
         <h4>Жиросжигающий</h4>
         <p>Сжечь жир и проявить рельеф за 6 недель. Для тех, кто уже тренировался: с гантелями, по схеме интервальных нагрузок.</p>
         <button class="more" data-prog="Жиросжигающий курс">Подробнее</button>
-      </article>
-      <article class="card">
-        <div class="thumb">🤖</div>
-        <span class="tag">Бестселлер</span>
-        <h4>ИИ-нутрициолог</h4>
-        <p>Едите без срывов и понимаете своё тело — питание, тренировки, анализы в кармане. Подскажет, поддержит, не осудит.</p>
-        <button class="more" data-prog="ИИ-нутрициолог">Подробнее</button>
       </article>
     </div>
   </div>
