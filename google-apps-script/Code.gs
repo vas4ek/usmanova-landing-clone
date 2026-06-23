@@ -19,10 +19,13 @@ function doPost(e) {
       sheet.appendRow(['Дата', 'Имя', 'Телефон', 'Цель']);
     }
 
+    // апостроф перед телефоном — иначе Таблицы примут "+7..." за формулу (#ERROR!)
+    var phone = data.phone ? "'" + data.phone : '';
+
     sheet.appendRow([
       new Date(),
       data.name  || '',
-      data.phone || '',
+      phone,
       data.goal  || ''
     ]);
 
