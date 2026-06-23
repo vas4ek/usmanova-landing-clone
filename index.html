@@ -7,7 +7,7 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preload" as="image" href="assets/hero.webp" fetchpriority="high">
 <meta name="description" content="Фитнес с Катей Усмановой — похудение, фигура, зал, форма после родов. Тренировки и питание под вашу цель.">
-<title>Фитнес с Катей Усмановой — повтор 3 экранов лендинга</title>
+<title>Фитнес с Катей Усмановой — похудение, фигура, зал, форма после родов</title>
 <style>
   :root{
     --pink:#FF6B9D;
@@ -97,6 +97,8 @@
   .card .thumb{height:260px;border-radius:16px;background:linear-gradient(180deg,#fff4f9 0%,#ffe3ef 100%);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
   .card .thumb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;margin:0 auto;transition:transform .3s ease}
   .card:hover .thumb img{transform:scale(1.04)}
+  .card .thumb img.lowered{transform:translateY(30px)}
+  .card:hover .thumb img.lowered{transform:translateY(30px) scale(1.04)}
   .card .thumb--photo img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}
   .tag{position:absolute;top:12px;left:12px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--pink);padding:6px 12px;border-radius:100px;box-shadow:0 6px 14px rgba(255,107,157,.4)}
   .tag--soft{background:#fff;color:var(--pink);box-shadow:0 4px 10px rgba(0,0,0,.08)}
@@ -246,7 +248,7 @@
         <a class="more" href="https://usmanovafit.gymteam.ru/maysale2026_7" target="_blank" rel="noopener noreferrer">Подробнее</a>
       </article>
       <article class="card">
-        <div class="thumb"><span class="tag tag--soft">Марафон</span><img src="assets/card5.webp" width="321" height="560" loading="lazy" decoding="async" alt="Плоский живот"></div>
+        <div class="thumb"><span class="tag tag--soft">Марафон</span><img class="lowered" src="assets/card5.webp" width="321" height="560" loading="lazy" decoding="async" alt="Плоский живот"></div>
         <h4>Плоский живот</h4>
         <p>Убрать вываливающийся живот — тренировки на глубокие мышцы пресса, которые отвечают за плоский живот, а не за «кубики».</p>
         <a class="more" href="https://usmanovafit.gymteam.ru/maysale2026_7" target="_blank" rel="noopener noreferrer">Подробнее</a>
@@ -291,8 +293,8 @@
           </div>
           <div class="field" id="f-phone">
             <label for="phone">Телефон</label>
-            <input type="tel" id="phone" name="phone" placeholder="+7 999 123-45-67" autocomplete="tel" inputmode="tel" maxlength="20">
-            <div class="err">Введите номер телефона (10–15 цифр, можно с кодом страны)</div>
+            <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" autocomplete="tel" inputmode="tel" maxlength="18">
+            <div class="err">Введите телефон полностью: +7 (999) 123-45-67</div>
           </div>
           <div class="field" id="f-goal">
             <label for="goal">Ваша цель</label>
@@ -417,12 +419,21 @@
     });
   });
 
-  // ---- Phone input: международный — '+' (необязательно) и цифры, до 15 цифр ----
+  // ---- Phone mask: +7 (XXX) XXX-XX-XX, digits only, max 11 ----
   const phoneEl = document.getElementById('phone');
   phoneEl.addEventListener('input', ()=>{
-    const hasPlus = phoneEl.value.trimStart().startsWith('+');
-    const d = phoneEl.value.replace(/\D/g,'').slice(0,15);
-    phoneEl.value = (hasPlus ? '+' : '') + d;
+    let d = phoneEl.value.replace(/\D/g,'');
+    if(d.startsWith('8')) d = '7'+d.slice(1);
+    if(d && d[0] !== '7') d = '7'+d;
+    d = d.slice(0,11);
+    let out = '';
+    if(d.length) out = '+7';
+    if(d.length>1) out += ' ('+d.slice(1,4);
+    if(d.length>=4) out += ')';
+    if(d.length>=5) out += ' '+d.slice(4,7);
+    if(d.length>=8) out += '-'+d.slice(7,9);
+    if(d.length>=10) out += '-'+d.slice(9,11);
+    phoneEl.value = out;
   });
 
   // ---- Form validation + submit ----
@@ -451,7 +462,7 @@
 
     const nameBad = name.length < 2;
     const digits = (phone.match(/\d/g)||[]).length;
-    const phoneBad = digits < 10 || digits > 15;
+    const phoneBad = digits !== 11;
     const goalBad = goal === '';
 
     setInvalid('f-name', nameBad);
