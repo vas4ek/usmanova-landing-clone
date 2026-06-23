@@ -89,8 +89,8 @@
     display:flex;flex-direction:column;gap:12px;transition:transform .15s ease, box-shadow .2s ease;
   }
   .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.07)}
-  .card .thumb{height:200px;border-radius:14px;background:linear-gradient(140deg,#ffe2ee,#ffc2db);overflow:hidden;display:flex;align-items:center;justify-content:center}
-  .card .thumb img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .3s ease}
+  .card .thumb{height:240px;border-radius:14px;background:linear-gradient(140deg,#ffe2ee,#ffc2db);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:8px}
+  .card .thumb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;margin:0 auto;transition:transform .3s ease}
   .card:hover .thumb img{transform:scale(1.05)}
   .tag{align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--pink);padding:5px 11px;border-radius:100px}
   .tag--soft{background:#fff0f6;color:var(--pink)}
@@ -262,9 +262,9 @@
             <div class="err">Введите имя (минимум 2 буквы)</div>
           </div>
           <div class="field" id="f-phone">
-            <label for="phone">Телефон или Telegram</label>
-            <input type="tel" id="phone" name="phone" placeholder="+7 999 123-45-67" autocomplete="tel" inputmode="tel">
-            <div class="err">Укажите телефон (от 7 цифр) или @username</div>
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" autocomplete="tel" inputmode="tel" maxlength="18">
+            <div class="err">Введите телефон полностью: +7 (999) 123-45-67</div>
           </div>
           <div class="field" id="f-goal">
             <label for="goal">Ваша цель</label>
@@ -323,6 +323,9 @@
 <div class="toast" id="toast"></div>
 
 <script>
+  // ===== Сюда вставь URL своего Cloudflare Worker (см. инструкцию) =====
+  const WORKER_URL = 'https://PASTE-YOUR-WORKER.workers.dev';
+
   // ---- Toast helper ----
   const toast = document.getElementById('toast');
   function showToast(msg){
@@ -367,10 +370,9 @@
     const goal = form.goal.value;
 
     const nameBad = name.length < 2;
-    // valid if 7+ digits OR a telegram @handle
+    // valid only if a full RU number: exactly 11 digits
     const digits = (phone.match(/\d/g)||[]).length;
-    const isHandle = /^@?[a-zA-Z0-9_]{4,}$/.test(phone);
-    const phoneBad = !(digits >= 7 || isHandle);
+    const phoneBad = digits !== 11;
     const goalBad = goal === '';
 
     setInvalid('f-name', nameBad);
@@ -390,6 +392,32 @@
     form.classList.add('hide');
     okBox.classList.add('show');
     showToast('Заявка принята ✓');
+
+    // ---- Send lead to Telegram via Cloudflare Worker ----
+    if(WORKER_URL && !WORKER_URL.includes('PASTE-')){
+      fetch(WORKER_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({name, phone, goal})
+      }).catch(err=>console.warn('TG notify failed:', err));
+    }
+  });
+
+  // ---- Phone input mask: forces +7 (XXX) XXX-XX-XX, digits only, max 11 ----
+  const phoneEl = document.getElementById('phone');
+  phoneEl.addEventListener('input', ()=>{
+    let d = phoneEl.value.replace(/\D/g,'');
+    if(d.startsWith('8')) d = '7'+d.slice(1);
+    if(d && d[0] !== '7') d = '7'+d;     // any other start → treat rest as local, prefix 7
+    d = d.slice(0,11);
+    let out = '';
+    if(d.length) out = '+7';
+    if(d.length>1) out += ' ('+d.slice(1,4);
+    if(d.length>=4) out += ')';
+    if(d.length>=5) out += ' '+d.slice(4,7);
+    if(d.length>=8) out += '-'+d.slice(7,9);
+    if(d.length>=10) out += '-'+d.slice(9,11);
+    phoneEl.value = out;
   });
 
   // clear error on input
