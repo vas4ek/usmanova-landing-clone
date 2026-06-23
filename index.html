@@ -53,33 +53,73 @@
   .topbar .btn{padding:11px 22px;font-size:12px}
 
   /* ===== SCREEN 1: HERO ===== */
-  .hero{position:relative;padding:50px 0 60px}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
-  .hero h1{font-size:clamp(29px,5vw,54px);line-height:1.05;font-weight:800;letter-spacing:-1px;text-transform:uppercase}
+  .hero{position:relative;padding:44px 0 64px}
+
+  /* top: headline column + intro text, full width above the pink band */
+  .hero-head{max-width:760px}
+  .hero h1{font-size:clamp(30px,4.6vw,52px);line-height:1.06;font-weight:800;letter-spacing:-1px;text-transform:uppercase}
   .hero h1 b{color:var(--pink)}
-  .hero .lead{margin:20px 0 4px;color:var(--muted);font-size:18px;max-width:520px}
-  .pills{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 26px}
-  .pill{background:#fff;border:1px solid var(--line);border-radius:100px;padding:9px 16px;font-size:13px;font-weight:600;color:#3c3c46;box-shadow:0 4px 12px rgba(0,0,0,.04)}
-  .pill b{color:var(--pink)}
-  .hero-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .hero-note{font-size:13px;color:var(--muted);max-width:210px}
-  .vpn{margin-top:22px;font-size:12px;color:#a7a7b0}
-  .hero-photo{
-    position:relative;border-radius:28px;min-height:440px;
+  .hero .lead{margin:18px 0 0;color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:620px}
+
+  /* the wide horizontal pink card */
+  .hero-band{
+    position:relative;margin-top:34px;border-radius:32px;overflow:hidden;
     background:
-      radial-gradient(110% 90% at 64% 14%, #ffdcea 0%, rgba(255,220,234,0) 55%),
-      linear-gradient(160deg,#ffc6dd 0%,#f79ec1 60%,#ef82ab 100%);
-    display:flex;align-items:flex-end;justify-content:center;overflow:hidden;
-    box-shadow:0 30px 60px rgba(255,107,157,.25);
+      radial-gradient(120% 140% at 88% 0%, #ffd0e2 0%, rgba(255,208,226,0) 52%),
+      linear-gradient(110deg,#ff9bc2 0%,#ff7fb0 46%,#ff6b9d 100%);
+    box-shadow:0 34px 70px rgba(255,107,157,.28);
+    display:grid;grid-template-columns:1.18fr .82fr;align-items:stretch;
+    min-height:340px;
   }
-  .hero-photo .hero-img{position:relative;max-height:104%;width:auto;max-width:100%;margin:0 auto;filter:drop-shadow(0 10px 22px rgba(0,0,0,.16))}
-  .hero-badge{position:absolute;top:22px;left:22px;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 12px 28px rgba(0,0,0,.12);z-index:2}
-  .hero-badge .n{font-size:22px;font-weight:800;color:var(--pink)}
+  /* left side of band: pills + cta on the pink */
+  .hero-panel{
+    position:relative;z-index:2;
+    padding:40px 38px 40px 44px;
+    display:flex;flex-direction:column;justify-content:center;gap:22px;
+  }
+  .pills{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{
+    background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.7);border-radius:100px;
+    padding:9px 16px;font-size:13px;font-weight:600;color:#9b2c5b;
+    box-shadow:0 6px 16px rgba(216,55,110,.18);backdrop-filter:blur(2px);
+  }
+  .pill b{color:var(--pink-d)}
+  .hero-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .hero-cta .btn{background:#fff;color:var(--pink-d);box-shadow:0 14px 30px rgba(150,30,75,.28)}
+  .hero-cta .btn:hover{background:#fff5f9;color:var(--pink-d)}
+  .hero-note{font-size:13px;color:rgba(255,255,255,.95);max-width:210px;font-weight:500;line-height:1.4}
+  .vpn{margin-top:18px;font-size:12px;color:#a7a7b0}
+
+  /* right side of band: photo bleeding in, anchored bottom */
+  .hero-photo{position:relative;display:flex;align-items:flex-end;justify-content:center}
+  .hero-photo .hero-img{
+    position:absolute;bottom:0;right:0;height:118%;width:auto;max-width:none;
+    filter:drop-shadow(-14px 14px 26px rgba(120,20,60,.22));
+  }
+  .hero-badge{
+    position:absolute;top:24px;right:26px;z-index:3;
+    background:#fff;border-radius:18px;padding:13px 18px;
+    box-shadow:0 16px 34px rgba(120,20,60,.22);
+  }
+  .hero-badge .n{font-size:23px;font-weight:800;color:var(--pink)}
   .hero-badge .t{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
-  @media(max-width:860px){
-    .hero-grid{grid-template-columns:1fr;gap:22px}
-    .hero-photo{min-height:340px;order:-1}
-    .hero-photo .hero-img{max-height:104%;max-width:98%}
+
+  @media(max-width:900px){
+    .hero-band{grid-template-columns:1.05fr .95fr;min-height:300px}
+    .hero-panel{padding:30px 24px 30px 30px;gap:18px}
+    .hero-photo .hero-img{height:112%}
+  }
+  @media(max-width:680px){
+    .hero{padding:30px 0 44px}
+    .hero-band{grid-template-columns:1fr;min-height:0;border-radius:26px}
+    .hero-photo{order:-1;height:300px;background:radial-gradient(120% 90% at 70% 10%,rgba(255,255,255,.18),rgba(255,255,255,0) 55%)}
+    .hero-photo .hero-img{position:relative;height:auto;width:auto;max-height:300px;max-width:92%;right:auto;bottom:0;margin:0 auto}
+    .hero-badge{top:16px;right:16px;padding:10px 14px}
+    .hero-badge .n{font-size:19px}
+    .hero-panel{padding:26px 24px 30px;text-align:left}
+    .hero-cta{gap:14px}
+    .hero-cta .btn{width:100%}
+    .hero-note{max-width:none}
   }
 
   /* ===== SCREEN 2: PROGRAMS ===== */
@@ -193,25 +233,30 @@
 
 <!-- ===== SCREEN 1: HERO ===== -->
 <section class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div>
-      <h1>Приведите тело в форму с чемпионкой <b>Катей Усмановой</b></h1>
-      <p class="lead">Похудеть, подтянуть попу и живот, набрать форму в зале, восстановиться после родов — тренировки и питание под вашу цель.</p>
-      <div class="pills">
-        <span class="pill">без диет, голода и запретов</span>
-        <span class="pill">с пользой для здоровья</span>
-        <span class="pill"><b>580 000+</b> учениц</span>
-      </div>
-      <div class="hero-cta">
-        <a href="#form" class="btn">Выбрать программу</a>
-        <span class="hero-note">Подберём программу под вашу цель и уровень</span>
-      </div>
-      <p class="vpn">Для корректной работы оригинального сайта отключите VPN</p>
+  <div class="wrap">
+    <div class="hero-head">
+      <h1>Приведите тело в форму с чемпионкой <b>Катей Усмановой</b></h1>
+      <p class="lead">Похудеть, подтянуть попу и живот, набрать форму в зале, восстановиться после родов — тренировки и питание под вашу цель.</p>
     </div>
-    <div class="hero-photo">
-      <div class="hero-badge"><div class="n">15+ лет</div><div class="t">опыта тренера</div></div>
-      <img class="hero-img" src="assets/hero.webp" width="844" height="760" decoding="async" fetchpriority="high" alt="Катя Усманова с гантелью" loading="eager">
+
+    <div class="hero-band">
+      <div class="hero-panel">
+        <div class="pills">
+          <span class="pill">без диет, голода и запретов</span>
+          <span class="pill">с пользой для здоровья</span>
+          <span class="pill"><b>580 000+</b> учениц</span>
+        </div>
+        <div class="hero-cta">
+          <a href="#form" class="btn">Выбрать программу</a>
+          <span class="hero-note">Подберём программу под вашу цель и уровень</span>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="hero-badge"><div class="n">15+ лет</div><div class="t">опыта тренера</div></div>
+        <img class="hero-img" src="assets/hero.webp" width="844" height="760" decoding="async" fetchpriority="high" alt="Катя Усманова с гантелью" loading="eager">
+      </div>
     </div>
+    <p class="vpn">Для корректной работы оригинального сайта отключите VPN</p>
   </div>
 </section>
 
