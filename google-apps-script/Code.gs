@@ -5,10 +5,13 @@
  * Как развернуть — см. README.md в этой папке.
  */
 
+// ID твоей таблицы (из ссылки .../spreadsheets/d/<ВОТ_ЭТО>/edit)
+var SHEET_ID = '12BiKz-YwWOxfKNZo91rL1DLo3QjuXsJezY-DTGXHuEg';
+
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var ss = SpreadsheetApp.openById(SHEET_ID);
     var sheet = ss.getSheetByName('Заявки') || ss.getSheets()[0];
 
     // заголовки при первом запуске
