@@ -487,7 +487,7 @@
       fetch(SHEET_URL, {
         method:'POST', mode:'no-cors',
         headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body:JSON.stringify({name, phone, goal, company:document.getElementById('company').value})
+        body:JSON.stringify({name, phone:"'"+phone, goal, company:document.getElementById('company').value})
       }).catch(err=>console.warn('Sheet save failed:', err));
     }
   });

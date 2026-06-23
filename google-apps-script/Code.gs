@@ -35,10 +35,8 @@ function doPost(e) {
       sheet.appendRow(['Дата', 'Имя', 'Телефон', 'Цель']);
     }
 
-    // апостроф перед телефоном — иначе Таблицы примут "+7..." за формулу (#ERROR!)
-    var phone = data.phone ? "'" + data.phone : '';
-
-    sheet.appendRow([new Date(), name, phone, goal]);
+    // телефон приходит с фронтенда уже с апострофом ('+7...) — Таблицы хранят как текст
+    sheet.appendRow([new Date(), name, data.phone || '', goal]);
 
     return ContentService
       .createTextOutput(JSON.stringify({ ok: true }))
