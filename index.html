@@ -69,17 +69,17 @@
     background:
       radial-gradient(110% 90% at 64% 14%, #ffdcea 0%, rgba(255,220,234,0) 55%),
       linear-gradient(160deg,#ffc6dd 0%,#f79ec1 60%,#ef82ab 100%);
-    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    display:flex;align-items:flex-end;justify-content:center;overflow:hidden;
     box-shadow:0 30px 60px rgba(255,107,157,.25);
   }
-  .hero-photo .hero-img{position:relative;height:100%;width:auto;max-width:92%;margin:0 auto;transform:translateY(2%);filter:drop-shadow(0 12px 24px rgba(0,0,0,.18))}
+  .hero-photo .hero-img{position:relative;max-height:104%;width:auto;max-width:100%;margin:0 auto;filter:drop-shadow(0 10px 22px rgba(0,0,0,.16))}
   .hero-badge{position:absolute;top:22px;left:22px;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 12px 28px rgba(0,0,0,.12);z-index:2}
   .hero-badge .n{font-size:22px;font-weight:800;color:var(--pink)}
   .hero-badge .t{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
   @media(max-width:860px){
     .hero-grid{grid-template-columns:1fr;gap:22px}
-    .hero-photo{min-height:380px;order:-1}
-    .hero-photo .hero-img{height:100%;max-width:96%}
+    .hero-photo{min-height:340px;order:-1}
+    .hero-photo .hero-img{max-height:104%;max-width:98%}
   }
 
   /* ===== SCREEN 2: PROGRAMS ===== */
@@ -210,7 +210,7 @@
     </div>
     <div class="hero-photo">
       <div class="hero-badge"><div class="n">15+ лет</div><div class="t">опыта тренера</div></div>
-      <img class="hero-img" src="assets/hero.webp" width="650" height="900" decoding="async" fetchpriority="high" alt="Катя Усманова с гантелью" loading="eager">
+      <img class="hero-img" src="assets/hero.webp" width="844" height="760" decoding="async" fetchpriority="high" alt="Катя Усманова с гантелью" loading="eager">
     </div>
   </div>
 </section>
