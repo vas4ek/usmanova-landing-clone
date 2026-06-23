@@ -287,8 +287,8 @@
           </div>
           <div class="field" id="f-phone">
             <label for="phone">Телефон</label>
-            <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" autocomplete="tel" inputmode="tel" maxlength="18">
-            <div class="err">Введите телефон полностью: +7 (999) 123-45-67</div>
+            <input type="tel" id="phone" name="phone" placeholder="+7 999 123-45-67" autocomplete="tel" inputmode="tel" maxlength="20">
+            <div class="err">Введите номер телефона (10–15 цифр, можно с кодом страны)</div>
           </div>
           <div class="field" id="f-goal">
             <label for="goal">Ваша цель</label>
@@ -413,21 +413,12 @@
     });
   });
 
-  // ---- Phone mask: +7 (XXX) XXX-XX-XX, digits only, max 11 ----
+  // ---- Phone input: международный — '+' (необязательно) и цифры, до 15 цифр ----
   const phoneEl = document.getElementById('phone');
   phoneEl.addEventListener('input', ()=>{
-    let d = phoneEl.value.replace(/\D/g,'');
-    if(d.startsWith('8')) d = '7'+d.slice(1);
-    if(d && d[0] !== '7') d = '7'+d;
-    d = d.slice(0,11);
-    let out = '';
-    if(d.length) out = '+7';
-    if(d.length>1) out += ' ('+d.slice(1,4);
-    if(d.length>=4) out += ')';
-    if(d.length>=5) out += ' '+d.slice(4,7);
-    if(d.length>=8) out += '-'+d.slice(7,9);
-    if(d.length>=10) out += '-'+d.slice(9,11);
-    phoneEl.value = out;
+    const hasPlus = phoneEl.value.trimStart().startsWith('+');
+    const d = phoneEl.value.replace(/\D/g,'').slice(0,15);
+    phoneEl.value = (hasPlus ? '+' : '') + d;
   });
 
   // ---- Form validation + submit ----
@@ -449,7 +440,7 @@
 
     const nameBad = name.length < 2;
     const digits = (phone.match(/\d/g)||[]).length;
-    const phoneBad = digits !== 11;
+    const phoneBad = digits < 10 || digits > 15;
     const goalBad = goal === '';
 
     setInvalid('f-name', nameBad);
