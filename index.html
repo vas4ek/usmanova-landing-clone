@@ -6,13 +6,13 @@
 <title>Фитнес с Катей Усмановой — повтор 3 экранов</title>
 <style>
   :root{
-    --pink:#F66297;
-    --pink-d:#e24f85;
+    --pink:#FF6B9D;
+    --pink-d:#ec4f86;
     --ink:#1c1c22;
     --muted:#6d6d78;
-    --bg:#f6f4f3;
+    --bg:#ffffff;
     --card:#ffffff;
-    --line:#ececf0;
+    --line:#f0e9ee;
     --radius:22px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -40,7 +40,7 @@
   h2.section-title{font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
 
   /* ============ TOP BAR ============ */
-  .topbar{position:sticky;top:0;z-index:40;background:rgba(246,244,243,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
   .logo{font-weight:800;font-size:18px;letter-spacing:.5px;text-decoration:none;color:var(--ink)}
   .logo:hover span{opacity:.8}
@@ -85,11 +85,12 @@
   .cat-head .line{flex:1;height:1px;background:var(--line)}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .card{
-    background:var(--card);border-radius:var(--radius);padding:22px;border:1px solid var(--line);
-    display:flex;flex-direction:column;gap:12px;transition:transform .15s ease, box-shadow .2s ease;
+    background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid var(--line);
+    display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.05);
+    transition:transform .15s ease, box-shadow .2s ease;
   }
-  .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.07)}
-  .card .thumb{height:240px;border-radius:14px;background:linear-gradient(140deg,#ffe2ee,#ffc2db);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:8px}
+  .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(255,107,157,.14)}
+  .card .thumb{height:260px;border-radius:16px;background:linear-gradient(180deg,#fff4f9 0%,#ffe3ef 100%);overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
   .card .thumb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;margin:0 auto;transition:transform .3s ease}
   .card:hover .thumb img{transform:scale(1.05)}
   .tag{align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--pink);padding:5px 11px;border-radius:100px}
