@@ -393,7 +393,7 @@
 
 <script>
   // ===== Опционально: URL Cloudflare Worker для отправки заявки в Telegram =====
-  const WORKER_URL = 'https://PASTE-YOUR-WORKER.workers.dev';
+  const SHEET_URL = 'PASTE-YOUR-APPS-SCRIPT-EXEC-URL';
 
   // ---- Toast ----
   const toast = document.getElementById('toast');
@@ -468,12 +468,13 @@
     okBox.classList.add('show');
     showToast('Заявка принята ✓');
 
-    // optional: send to Telegram via Cloudflare Worker
-    if(WORKER_URL && !WORKER_URL.includes('PASTE-')){
-      fetch(WORKER_URL, {
-        method:'POST', headers:{'Content-Type':'application/json'},
+    // send lead to Google Sheet (Apps Script web app)
+    if(SHEET_URL && !SHEET_URL.includes('PASTE-')){
+      fetch(SHEET_URL, {
+        method:'POST', mode:'no-cors',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
         body:JSON.stringify({name, phone, goal})
-      }).catch(err=>console.warn('TG notify failed:', err));
+      }).catch(err=>console.warn('Sheet save failed:', err));
     }
   });
 
