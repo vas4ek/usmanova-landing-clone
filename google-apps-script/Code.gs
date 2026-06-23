@@ -11,6 +11,22 @@ var SHEET_ID = '12BiKz-YwWOxfKNZo91rL1DLo3QjuXsJezY-DTGXHuEg';
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
+
+    // honeypot: бот заполнил скрытое поле — молча игнорируем
+    if (data.company) {
+      return ContentService.createTextOutput(JSON.stringify({ ok: true }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // серверная валидация — отсекаем мусор/прямой спам
+    var name = String(data.name || '').trim().slice(0, 80);
+    var digits = String(data.phone || '').replace(/\D/g, '');
+    var goal = String(data.goal || '').trim().slice(0, 80);
+    if (name.length < 2 || digits.length < 10 || digits.length > 15) {
+      return ContentService.createTextOutput(JSON.stringify({ ok: false, error: 'validation' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
     var ss = SpreadsheetApp.openById(SHEET_ID);
     var sheet = ss.getSheetByName('Заявки') || ss.getSheets()[0];
 
@@ -22,12 +38,7 @@ function doPost(e) {
     // апостроф перед телефоном — иначе Таблицы примут "+7..." за формулу (#ERROR!)
     var phone = data.phone ? "'" + data.phone : '';
 
-    sheet.appendRow([
-      new Date(),
-      data.name  || '',
-      phone,
-      data.goal  || ''
-    ]);
+    sheet.appendRow([new Date(), name, phone, goal]);
 
     return ContentService
       .createTextOutput(JSON.stringify({ ok: true }))
