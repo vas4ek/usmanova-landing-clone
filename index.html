@@ -72,7 +72,7 @@
       linear-gradient(150deg,#ffc6dd 0%,#f79ec1 58%,#ef82ab 100%);
     overflow:hidden;box-shadow:0 30px 60px rgba(255,107,157,.25);
   }
-  .hero-photo .hero-img{position:absolute;bottom:-8%;right:-6%;height:96%;width:auto;max-width:none;filter:drop-shadow(-12px 12px 26px rgba(120,20,60,.2))}
+  .hero-photo .hero-img{position:absolute;bottom:-8%;left:50%;transform:translateX(-50%);height:96%;width:auto;max-width:none;filter:drop-shadow(0 12px 26px rgba(120,20,60,.2))}
   .hero-stats{position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:2;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
   .hero-badge{background:#fff;border-radius:14px;padding:9px 13px;box-shadow:0 14px 30px rgba(120,20,60,.16)}
   .hero-badge .n{font-size:18px;font-weight:800;color:var(--pink);line-height:1}
@@ -80,7 +80,7 @@
   @media(max-width:860px){
     .hero-grid{grid-template-columns:1fr;gap:22px}
     .hero-photo{min-height:430px;order:-1}
-    .hero-photo .hero-img{height:92%;right:-6%}
+    .hero-photo .hero-img{height:92%}
     .hero-stats{left:16px;gap:9px}
     .hero-badge{min-width:0;padding:9px 13px}
     .hero-badge .n{font-size:17px}
